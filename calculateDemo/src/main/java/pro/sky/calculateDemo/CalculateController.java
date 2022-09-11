@@ -1,10 +1,12 @@
 package pro.sky.calculateDemo;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/calculator/")
 public class CalculateController {
     private final CalculatorService calculateService;
 
@@ -12,48 +14,55 @@ public class CalculateController {
         this.calculateService = calculateService;
     }
 
-    @GetMapping(path = "/calculator")
+    @GetMapping
     public String answerHello() {
         return calculateService.answerHello();
     }
 
-    @GetMapping(path = "/calculator/plus")
-    public String addUpNumbers(@RequestParam(value = "num1", required = false)  Integer a,
-                               @RequestParam(value = "num2", required = false)  Integer s) {
-        if(null == a|| null == s) {
-            return  "<b>Параметр не может быть пустым</b>";
+    @GetMapping(path = "/plus")
+    public String plusNumbers(@RequestParam(value = "num1", required = false) Integer a,
+                              @RequestParam(value = "num2", required = false) Integer s) {
+        if (null == a || null == s) {
+            return "<b>Параметр не может быть пустым</b>";
         } else {
-            return calculateService.addUpNumbers(a, s);
+            int plus = calculateService.plusNumbers(a, s);
+            return a + " + " + s + " = " + plus;
         }
     }
 
-    @GetMapping(path = "/calculator/minus")
-    public String subtractNumbers(@RequestParam(value = "num1", required = false)  Integer a,
-                                  @RequestParam(value = "num2", required = false)  Integer s) {
-        if(null == a|| null == s) {
-            return  "<b>Параметр не может быть пустым</b>";
+    @GetMapping(path = "/minus")
+    public String minusNumbers(@RequestParam(value = "num1", required = false) Integer a,
+                                  @RequestParam(value = "num2", required = false) Integer s) {
+        if (null == a || null == s) {
+            return "<b>Параметр не может быть пустым</b>";
         } else {
-            return calculateService.minusNumbers(a, s);
+            int minus = calculateService.minusNumbers(a, s);
+            return a + " - " + s + " = " + minus;
         }
     }
 
-    @GetMapping(path = "/calculator/multiply")
-    public String multiplyNumbers(@RequestParam(value = "num1", required = false)  Integer a,
-                                  @RequestParam(value = "num2", required = false)  Integer s) {
-        if(null == a|| null == s) {
-            return  "<b>Параметр не может быть пустым</b>";
+    @GetMapping(path = "/multiply")
+    public String multiplyNumbers(@RequestParam(value = "num1", required = false) Integer a,
+                                  @RequestParam(value = "num2", required = false) Integer s) {
+        if (null == a || null == s) {
+            return "<b>Параметр не может быть пустым</b>";
         } else {
-            return calculateService.multiplyNumbers(a, s);
+            int multiple = calculateService.multiplyNumbers(a, s);
+            return a + " * " + s + " = " + multiple;
         }
     }
 
-    @GetMapping(path = "/calculator/divide")
-    public String divideNumbers(@RequestParam(value = "num1", required = false)  Double a,
-                                @RequestParam(value = "num2", required = false)  Double s) {
-        if(null == a|| null == s) {
-            return  "<b>Параметр не может быть пустым</b>";
+    @GetMapping(path = "/divide")
+    public String divideNumbers(@RequestParam(value = "num1", required = false) Double a,
+                                @RequestParam(value = "num2", required = false) Double s) {
+        if (null == a || null == s) {
+            return "<b>Параметр не может быть пустым</b>";
+        } else if (s == 0) {
+            return "<b>Делить на ноль нельзя</b>";
         } else {
-            return calculateService.divideNumbers(a, s);
+            double divide = calculateService.divideNumbers(a, s);
+            return a + " / " + s + " = " + divide;
         }
+
     }
 }

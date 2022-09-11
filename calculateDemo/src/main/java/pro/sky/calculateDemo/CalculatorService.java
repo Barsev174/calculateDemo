@@ -1,13 +1,16 @@
 package pro.sky.calculateDemo;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface CalculatorService {
 
     String answerHello();
 
-    String addUpNumbers(int a, int s);
-    String minusNumbers(int a, int s);
-    String multiplyNumbers(int a, int s);
-    String divideNumbers(Double a, Double s);
+    int plusNumbers(Integer a, Integer s);
+    int minusNumbers(Integer a, Integer s);
+    int multiplyNumbers(Integer a, Integer s);
+    double divideNumbers(Double a, Double s);
 
 
 }

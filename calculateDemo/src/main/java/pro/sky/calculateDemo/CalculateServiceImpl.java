@@ -2,34 +2,28 @@ package pro.sky.calculateDemo;
 
 import org.springframework.stereotype.Service;
 
-@Service
-public class CalculateServiceImpl implements CalculatorService {
 
+public class CalculateServiceImpl implements CalculatorService {
+    @Override
     public String answerHello() {
         return "<b>Добро пожаловать в калькулятор</b>";
     }
 
-    public String addUpNumbers(int a, int s) {
-        int sum = a + s;
-        return a + " + " + s + " = " + sum;
+    @Override
+    public int plusNumbers(Integer a, Integer s) {
+        return a + s;
+    }
+    @Override
+    public int minusNumbers(Integer a, Integer s) {
+        return a - s;
+    }
+    @Override
+    public int multiplyNumbers(Integer a, Integer s) {
+        return a * s;
+    }
+    @Override
+    public double divideNumbers(Double a, Double s) {
+        return a / s;
     }
 
-    public String minusNumbers(int a, int s) {
-        int sum = a - s;
-        return a + " - " + s + " = " + sum;
-    }
-
-    public String multiplyNumbers(int a, int s) {
-        int sum = a * s;
-        return a + " * " + s + " = " + sum;
-    }
-
-    public String divideNumbers(Double a, Double s) {
-        if (s != 0) {
-            Double sum = a / s;
-            return a + " / " + s + " = " + sum;
-        } else {
-            return "<b>Делить на ноль нельзя</b>";
-        }
-    }
 }
