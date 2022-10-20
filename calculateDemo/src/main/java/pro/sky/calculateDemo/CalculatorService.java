@@ -10,7 +10,7 @@ public interface CalculatorService {
     int plusNumbers(Integer a, Integer s);
     int minusNumbers(Integer a, Integer s);
     int multiplyNumbers(Integer a, Integer s);
-    double divideNumbers(Double a, Double s);
+    int divideNumbers(Integer a, Integer s);
 
 
 }

@@ -1,9 +1,9 @@
 package pro.sky.calculateDemo;
 
-import org.springframework.stereotype.Service;
 
+import pro.sky.calculateDemo.exception.DivisionByZeroException;
 
-public class CalculateServiceImpl implements CalculatorService {
+public class CalculatorServiceImpl implements CalculatorService {
     @Override
     public String answerHello() {
         return "<b>Добро пожаловать в калькулятор</b>";
@@ -22,7 +22,10 @@ public class CalculateServiceImpl implements CalculatorService {
         return a * s;
     }
     @Override
-    public double divideNumbers(Double a, Double s) {
+    public int divideNumbers(Integer a, Integer s) {
+        if (s == 0) {
+            throw new DivisionByZeroException();
+        }
         return a / s;
     }
 

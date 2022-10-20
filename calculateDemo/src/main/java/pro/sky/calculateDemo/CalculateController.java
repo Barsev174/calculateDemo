@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.calculateDemo.exception.DivisionByZeroException;
 
 @RestController
 @RequestMapping("/calculator/")
@@ -53,16 +54,12 @@ public class CalculateController {
     }
 
     @GetMapping(path = "/divide")
-    public String divideNumbers(@RequestParam(value = "num1", required = false) Double a,
-                                @RequestParam(value = "num2", required = false) Double s) {
-        if (null == a || null == s) {
-            return "<b>Параметр не может быть пустым</b>";
-        } else if (s == 0) {
-            return "<b>Делить на ноль нельзя</b>";
-        } else {
-            double divide = calculateService.divideNumbers(a, s);
+    public String divideNumbers(@RequestParam(value = "num1", required = false) int a,
+                                @RequestParam(value = "num2", required = false) int s) {
+
+            int divide = calculateService.divideNumbers(a, s);
             return a + " / " + s + " = " + divide;
-        }
+
 
     }
 }
